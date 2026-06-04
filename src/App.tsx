@@ -19,11 +19,15 @@ export const App = () => {
 
     if (title && userId !== 0) {
       const maxId = Math.max(...todos.map(todo => todo.id));
+      const user = usersFromServer.find(
+        userFromServer => userFromServer.id === userId,
+      );
       const newTodo = {
         id: maxId + 1,
         title,
         userId,
         completed: false,
+        user,
       };
 
       setTodos([...todos, newTodo]);
@@ -48,7 +52,9 @@ export const App = () => {
 
       <form action="/api/todos" method="POST" onSubmit={handleSubmit}>
         <div className="field">
+          <label htmlFor="title-input">Title</label>
           <input
+            id="title-input"
             type="text"
             data-cy="titleInput"
             value={title}
@@ -59,7 +65,9 @@ export const App = () => {
         </div>
 
         <div className="field">
+          <label htmlFor="user-select">User</label>
           <select
+            id="user-select"
             data-cy="userSelect"
             value={userId}
             onChange={handleUserIdChange}

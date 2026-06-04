@@ -1,4 +1,3 @@
-import users from '../../api/users';
 import { UserInfo } from '../UserInfo';
 
 type Props = {
@@ -15,8 +14,6 @@ type Props = {
 };
 
 export const TodoInfo = ({ todo }: { todo: Props }) => {
-  const user = users.find(u => u.id === todo.userId);
-
   return (
     <article
       key={todo.id}
@@ -24,7 +21,7 @@ export const TodoInfo = ({ todo }: { todo: Props }) => {
       className={`TodoInfo ${todo.completed ? 'TodoInfo--completed' : ''}`}
     >
       <h2 className="TodoInfo__title">{todo.title}</h2>
-      {user && <UserInfo user={user} />}
+      {todo.user && <UserInfo user={todo.user} />}
     </article>
   );
 };
