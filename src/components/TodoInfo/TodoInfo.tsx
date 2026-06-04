@@ -16,7 +16,6 @@ type Props = {
 export const TodoInfo = ({ todo }: { todo: Props }) => {
   return (
     <article
-      key={todo.id}
       data-id={todo.id}
       className={`TodoInfo ${todo.completed ? 'TodoInfo--completed' : ''}`}
     >
